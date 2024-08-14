@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
+import Model from "./Model";
 
 export default function Forms() {
   const [infoForm, setInfoForm] = useState({
@@ -9,8 +10,6 @@ export default function Forms() {
     isEmployed: false,
     salary: "",
   });
-
-
 
   return (
     <div>
@@ -73,8 +72,12 @@ export default function Forms() {
             <option value="more_than_10000">More than $10,000</option>
           </select>
         </div>
-        <Button />
+        {/* <Button /> */}
+        <button className="btn btn-success" disabled={false}></button>
       </form>
+      <div>
+        <Model />
+      </div>
     </div>
   );
 }
