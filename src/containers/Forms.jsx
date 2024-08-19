@@ -8,8 +8,16 @@ export default function Forms() {
     phone: "",
     age: "",
     isEmployed: false,
-    salary: "",
+    salary: "less_than_5000",
   });
+
+  function handleSubmit() {
+    alert(infoForm.name);
+  }
+
+  function isDisabled() {
+    return false
+  }
 
   return (
     <div>
@@ -73,11 +81,15 @@ export default function Forms() {
           </select>
         </div>
         {/* <Button /> */}
-        <button className="btn btn-success" disabled={false}></button>
+        <button
+          className="btn btn-success d-block mx-auto"
+          onClick={handleSubmit}
+          disabled={isDisabled}
+        >
+          Apply
+        </button>
       </form>
-      <div>
-        <Model />
-      </div>
+      <div>{/* <Model /> */}</div>
     </div>
   );
 }
