@@ -8,7 +8,7 @@ export default function Forms() {
     phone: "",
     age: "",
     isEmployed: false,
-    salary: "",
+    salary: "less_than_5000",
   });
   // function handleSubmit() {
   //   if (infoForm.name === "") {
@@ -19,6 +19,14 @@ export default function Forms() {
   const btnIsDisabled = infoForm.name === "" || infoForm.phone === "" || infoForm.age === "";
 
   // const [clickSubmit, setClickSubmit] = useState(setInfoForm)
+
+  function handleSubmit() {
+    alert(infoForm.name);
+  }
+
+  function isDisabled() {
+    return false
+  }
 
   return (
     <div>
@@ -92,6 +100,7 @@ export default function Forms() {
           Send
         </button>
       </form>
+      <div>{/* <Model /> */}</div>
       <div>{/* <Model /> */}</div>
     </div>
   );
