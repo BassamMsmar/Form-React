@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "./Button";
 import Model from "./Model";
 
 export default function Forms() {
+  // const [btnIsDisabled, setBtnIsDisabled] = useState(false);
   const [infoForm, setInfoForm] = useState({
     name: "",
     phone: "",
@@ -10,6 +10,15 @@ export default function Forms() {
     isEmployed: false,
     salary: "",
   });
+  // function handleSubmit() {
+  //   if (infoForm.name === "") {
+  //     setBtnIsDisabled(true);
+  //   }
+  // }
+
+  const btnIsDisabled = infoForm.name === "" || infoForm.phone === "" || infoForm.age === "";
+
+  // const [clickSubmit, setClickSubmit] = useState(setInfoForm)
 
   return (
     <div>
@@ -54,6 +63,7 @@ export default function Forms() {
               id="employedCheckbox"
               checked={infoForm.isEmployed}
               onChange={(e) =>
+
                 setInfoForm({ ...infoForm, isEmployed: e.target.checked })
               }
             />
@@ -73,11 +83,16 @@ export default function Forms() {
           </select>
         </div>
         {/* <Button /> */}
-        <button className="btn btn-success" disabled={false}></button>
+        <button
+          className="btn btn-success m-auto d-block"
+          type="submit"
+          // onClick={handleSubmit}
+          disabled={btnIsDisabled}
+        >
+          Send
+        </button>
       </form>
-      <div>
-        <Model />
-      </div>
+      <div>{/* <Model /> */}</div>
     </div>
   );
 }
