@@ -2,7 +2,7 @@ import { useState } from "react";
 import Model from "./Model";
 
 export default function Forms() {
-  // const [btnIsDisabled, setBtnIsDisabled] = useState(false);
+  const [showModel, setShowModel] = useState(false);
   const [infoForm, setInfoForm] = useState({
     name: "",
     phone: "",
@@ -10,34 +10,31 @@ export default function Forms() {
     isEmployed: false,
     salary: "less_than_5000",
   });
-  // function handleSubmit() {
-  //   if (infoForm.name === "") {
-  //     setBtnIsDisabled(true);
-  //   }
-  // }
 
-  const btnIsDisabled = infoForm.name === "" || infoForm.phone === "" || infoForm.age === "";
+  const btnIsDisabled =
+    infoForm.name === "" || infoForm.phone === "" || infoForm.age === "";
 
-  // const [clickSubmit, setClickSubmit] = useState(setInfoForm)
-
-  function handleSubmit() {
-    alert(infoForm.name);
+  function handleSubmit(e) {
+    e.preventDefault();
+    setShowModel(true);
   }
 
-  function isDisabled() {
-    return false
+  function handleFormClick(e) {
+    e.stopPropagation();
   }
 
   return (
-    <div>
-      <form className="form mx-5">
+    <div onClick={() => setShowModel(false)}>
+      <form className="form mx-5" onClick={handleFormClick}>
         <div className="d-block text-center mb-3">
           <input
             type="text"
             className="form-control"
             placeholder="Name"
             value={infoForm.name}
-            onChange={(e) => setInfoForm({ ...infoForm, name: e.target.value })}
+            onChange={(e) =>
+              setInfoForm({ ...infoForm, name: e.target.value })
+            }
           />
         </div>
         <div className="d-block text-center mb-3">
@@ -71,7 +68,6 @@ export default function Forms() {
               id="employedCheckbox"
               checked={infoForm.isEmployed}
               onChange={(e) =>
-
                 setInfoForm({ ...infoForm, isEmployed: e.target.checked })
               }
             />
@@ -90,18 +86,17 @@ export default function Forms() {
             <option value="more_than_10000">More than $10,000</option>
           </select>
         </div>
-        {/* <Button /> */}
         <button
           className="btn btn-success m-auto d-block"
-          type="submit"
-          // onClick={handleSubmit}
+          onClick={handleSubmit}
           disabled={btnIsDisabled}
         >
           Send
         </button>
       </form>
-      <div>{/* <Model /> */}</div>
-      <div>{/* <Model /> */}</div>
+      <div>
+        <Model isVisibal={showModel} />
+      </div>
     </div>
   );
 }
